@@ -1,0 +1,387 @@
+[
+   {
+      "network": "Državna mreža za trajno praćenje kvalitete zraka",
+      "name": "DESINIĆ",
+      "location": [46.169056, 15.660639]
+   },
+   {
+      "network": "Državna mreža za trajno praćenje kvalitete zraka",
+      "name": "HUM (otok Vis)",
+      "location": [43.031333, 16.115972]
+   },
+   {
+      "network": 		"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 		"KARLOVAC-1",
+      "location": [45.493525, 15.565131]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"KOPAČKI RIT",
+      "location": [45.698028, 18.834639]
+   },
+   {
+      "network": 		"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 		"KUTINA-1",
+      "location": [45.479056, 16.780667]
+   },
+   {
+      "network": 		"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 		"OPUZEN (Delta Neretve)",
+      "location": [43.008728, 17.566025]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"OSIJEK-1",
+      "location": [45.558792, 18.698769]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"PARG",
+      "location": [45.593481, 14.630464]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"PLITVIČKA JEZERA",
+      "location": [44.899333, 15.609778]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"POLAČA (Ravni kotari)",
+      "location": [44.021094, 15.516111]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"Pula Fižela",
+      "location": [44.862469, 13.816858]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"RIJEKA - PPI PM2.5",
+      "location": [45.320794, 14.483511]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"RIJEKA-1",
+      "location": [45.3275, 14.446633]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"RIJEKA-2",
+      "location": [45.320794, 14.483511]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"SISAK-1",
+      "location": [45.458125, 16.388356]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"SLAVONSKI BROD - privremena pokretna postaja",
+      "location": [45.148197, 18.023147]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"SLAVONSKI BROD-1",
+      "location": [45.159472, 17.9951]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"SLAVONSKI BROD-2",
+      "location": [45.149114, 18.02345]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"VARAŽDIN-1",
+      "location": [46.282911, 16.363803]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"VELA STRAŽA (Dugi otok)",
+      "location": [43.9915, 15.058111]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"VIŠNJAN",
+      "location": [45.291203, 13.749778]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"ZAGREB PPI PM2.5 - Ksaverska cesta",
+      "location": [45.834372, 15.978394]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"ZAGREB-1",
+      "location": [45.800339, 15.974072]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"ZAGREB-2",
+      "location": [45.823717, 16.035825]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"ZAGREB-3",
+      "location": [45.764947, 16.006469]
+   },
+   {
+      "network": 	"Državna mreža za trajno praćenje kvalitete zraka",
+      "name": 	"ŽARKOVICA (Dubrovnik)",
+      "location": [42.644697, 18.122611]
+   },
+   {
+      "network": 	"Lokalna mjerna mreža Split",
+      "name": 	"Gripe",
+      "location": [43.507472, 16.459139]
+   },
+   {
+      "network": 	"Lokalna mjerna mreža Split",
+      "name": 	"Poljud",
+      "location": [43.523144, 16.426333]
+   },
+   {
+      "network": 	"Lokalna mjerna mreža Split",
+      "name": 	"Visoka",
+      "location": [43.502142, 16.469339]
+   },
+   {
+      "network": 	"Lokalna mjerna mreža Split",
+      "name": 	"Žrnovnica",
+      "location": [43.517294, 16.53595]
+   },
+   {
+      "network": 	"Lokalna mjerna mreža-Grad Kutina",
+      "name": 	"Vatrogasni dom (K2) - Kutina",
+      "location": [45.472778, 16.785]
+   },
+   {
+      "network": 	"Mjerna mreža Cemex Hrvatska d.o.o.",
+      "name": 	"AMS1 Kaštel Sućurac",
+      "location": [43.548119, 16.434961]
+   },
+   {
+      "network": 	"Mjerna mreža Cemex Hrvatska d.o.o.",
+      "name": 	"AMS2 Sveti Kajo",
+      "location": [43.545906, 16.467836]
+   },
+   {
+      "network": 	"Mjerna mreža Cemex Hrvatska d.o.o.",
+      "name": 	"Split-1",
+      "location": [43.510653, 16.449342]
+   },
+   {
+      "network": 	"Mjerna mreža CZGO Marišćina",
+      "name": 	"Viškovo - Marišćina",
+      "location": [45.402222, 14.388333]
+   },
+   {
+      "network": 	"Mjerna mreža Grada Karlovca",
+      "name": 	"Banija 18",
+      "location": [45.498733, 15.555861]
+   },
+   {
+      "network": 	"Mjerna mreža Grada Karlovca",
+      "name": 	"Domobranska ulica 2",
+      "location": [45.49125, 15.555489]
+   },
+   {
+      "network": 	"Mjerna mreža Grada Karlovca",
+      "name": 	"Dr.V.Mačeka 48",
+      "location": [45.493667, 15.546556]
+   },
+   {
+      "network": 	"Mjerna mreža grada Umaga",
+      "name": 	"Umag",
+      "location": [45.432917, 13.524139]
+   },
+   {
+      "network": 	"Mjerna mreža grada Umaga",
+      "name": 	"Umag sediment",
+      "location": [45.433, 13.524361]
+   },
+   {
+      "network": 	"Mjerna mreža grada Zagreba",
+      "name": 	"Đorđićeva ulica (Stanica za hitnu pomoć)",
+      "location": [45.811389, 15.989167]
+   },
+   {
+      "network": 	"Mjerna mreža grada Zagreba",
+      "name": 	"Ksaverska cesta",
+      "location": [45.834381, 15.978156]
+   },
+   {
+      "network": 	"Mjerna mreža grada Zagreba",
+      "name": 	"Pešćenica",
+      "location": [45.804722, 16.032778]
+   },
+   {
+      "network": 	"Mjerna mreža grada Zagreba",
+      "name": 	"Prilaz baruna Filipovića",
+      "location": [45.812222, 15.948611]
+   },
+   {
+      "network": 	"Mjerna mreža grada Zagreba",
+      "name": 	"Siget (Dom zdravlja)",
+      "location": [45.773611, 15.984444]
+   },
+   {
+      "network": 	"Mjerna mreža grada Zagreba",
+      "name": 	"Susedgrad (Tvornica \"Utenzilija\")",
+      "location": [45.812222, 15.873611]
+   },
+   {
+      "network": 	"Mjerna mreža INA Rafinerija nafte Rijeka",
+      "name": 	"Krasica",
+      "location": [45.308333, 14.551667]
+   },
+   {
+      "network": 	"Mjerna mreža INA Rafinerija nafte Rijeka",
+      "name": 	"Paveki",
+      "location": [45.294167, 14.513889]
+   },
+   {
+      "network": 	"Mjerna mreža INA Rafinerija nafte Rijeka",
+      "name": 	"Urinj",
+      "location": [45.288611, 14.528333]
+   },
+   {
+      "network": 	"Mjerna mreža INA Rafinerija nafte Rijeka",
+      "name": 	"Vrh Martinšćice",
+      "location": [45.311389, 14.487222]
+   },
+   {
+      "network": 	"Mjerna mreža INA Rafinerija nafte Sisak",
+      "name": 	"Sisak 2 Galdovo",
+      "location": [45.477961, 16.399617]
+   },
+   {
+      "network": 	"Mjerna mreža KD Čistoća",
+      "name": 	"Viškovo - Viševac",
+      "location": [45.368889, 14.383889]
+   },
+   {
+      "network": 	"Mjerna mreža Primorsko-goranske županije",
+      "name": 	"Krešimirova ul.",
+      "location": [45.331667, 14.425556]
+   },
+   {
+      "network": 	"Mjerna mreža Primorsko-goranske županije",
+      "name": 	"Mlaka",
+      "location": [45.338889, 14.4125]
+   },
+   {
+      "network": 	"Mjerna mreža Primorsko-goranske županije",
+      "name": 	"Opatija - Gorovo",
+      "location": [45.336667, 14.306667]
+   },
+   {
+      "network": 	"Mjerna mreža Termoelektrane Plomin",
+      "name": 	"Klavar",
+      "location": [45.134306, 14.167167]
+   },
+   {
+      "network": 	"Mjerna mreža Termoelektrane Plomin",
+      "name": 	"Plomin",
+      "location": [45.139583, 14.179139]
+   },
+   {
+      "network": 	"Mjerna mreža Termoelektrane Plomin",
+      "name": 	"Ripenda",
+      "location": [45.10975, 14.138972]
+   },
+   {
+      "network": 	"Mjerna mreža Termoelektrane Plomin",
+      "name": 	"Sv. Katarina",
+      "location": [45.173444, 14.045333]
+   },
+   {
+      "network": 	"Mjerne postaje posebne namjene Grada Zagreba",
+      "name": 	"Mirogojska cesta",
+      "location": [45.832103, 15.980547]
+   },
+   {
+      "network": 	"Monitoring LNG terminala Krk",
+      "name": 	"Omišalj LNG",
+      "location": [45.213611, 14.5575]
+   },
+   {
+      "network": 	"Monitoring Viktor Lenac",
+      "name": 	"Kostrena - Martinšćica",
+      "location": [45.313333, 14.482778]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka cementare Koromačno",
+      "name": 	"Koromačno",
+      "location": [44.980422, 14.122108]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka grada Pule",
+      "name": 	"Pula Fižela - lokalna",
+      "location": [44.862469, 13.816858]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka grada Pule",
+      "name": 	"Riva 4",
+      "location": [44.872222, 13.8785]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka grada Pule",
+      "name": 	"Ulica Kamenjak (Dječji vrtić)",
+      "location": [44.858889, 13.83925]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka Grada Velike Gorice",
+      "name": 	"Velika Gorica",
+      "location": [45.714847, 16.068289]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka HEP Zagreb",
+      "name": 	"Bijenik",
+      "location": [45.846775, 15.939175]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka HEP Zagreb",
+      "name": 	"Vrhovec",
+      "location": [45.817961, 15.94795]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka Našicecement",
+      "name": 	"Zoljan",
+      "location": [45.472442, 18.039125]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka Rockwool",
+      "name": 	"Čambarelići",
+      "location": [45.181331, 14.101011]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka Rockwool",
+      "name": 	"Zajci",
+      "location": [45.204147, 14.070761]
+   },
+   {
+      "network": 	"Mreža za praćenje kakvoće zraka Sisačko-moslavačke županije",
+      "name": 	"Sisak 3",
+      "location": [45.488956, 16.373778]
+   },
+   {
+      "network": 	"Mreža za praćenje kvalitete zraka Međunarodne zračne luke Zagreb",
+      "name": 	"Međunarodna zračna luka Zagreb",
+      "location": [45.746619, 16.080225]
+   },
+   {
+      "network": 	"Mreža za praćenje kvalitete zraka Zagrebački holding d.o.o.,ZGOS",
+      "name": 	"Jakuševec",
+      "location": [45.763728, 16.018014]
+   },
+   {
+      "network": 	"Mreža za praćenje kvalitete zraka Zračne luke Dubrovnik",
+      "name": 	"Zračna luka Dubrovnik",
+      "location": [42.553889, 18.284722]
+   },
+   {
+      "network": 	"Mreža za praćenje kvalitete zraka ŽCGO Kaštijun",
+      "name": 	"AMP Kaštijun",
+      "location": [44.837778, 13.883889]
+   }
+]
