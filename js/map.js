@@ -2,8 +2,8 @@ class Map {
 
     constructor() {
 
-        this.width = 1200;
-        this.height = 720;
+        this.width = 960;
+        this.height = 700;
         
         this.projection = d3.geo.mercator()
             .center([0, 10])
@@ -14,13 +14,8 @@ class Map {
         this.path = d3.geo.path()
             .projection(this.projection);
         
-        this.svg = d3.select("body").append("svg")
-            .attr("width", this.width)
-            .attr("height", this.height)
-            .style("background", "white")
-            .style("position", "relative")
-            .style("left", "50%")
-            .style("transform", "translate(-50%, 15%)");
+        this.svg = d3.select("#map").append("svg")
+            .attr("viewBox", "0 0 " + this.width + " " + this.height);
     }
 
     loadMap(callback) {

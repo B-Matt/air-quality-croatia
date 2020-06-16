@@ -3,24 +3,69 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>
-<!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Visualization of air quality in Croatia - Matej Arlović</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
+<!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Visualization of air quality in Croatia - Matej Arlović</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
-        <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script src="https://d3js.org/topojson.v3.min.js"></script>
-        <script src="js/map.js"></script>
-        <script src="js/stations.js"></script>
-        <script src="js/app.js"></script>
-    </body>
+
+    <div class="container">
+        <h1 class="text-center pt-3 m-0">Air Quality In Republic Croatia</h1>
+        <h4 id="aq-dates"></h4>
+
+        <div id="map" class="text-center"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-2 col-md-1 offset-1 offset-md-3 p-0 mr-0 text-center aq-btns">
+                    <a href="#" id="animate-button">
+                        <i class="material-icons">play_circle_outline</i>
+                    </a>
+                    <a href="#" id="pause-button">
+                        <i class="material-icons">pause_circle_outline</i>
+                    </a>
+                </div>
+                <div id="slider" class="col-6 col-md-5 mx-0">
+                </div>
+                <div id="aq-dates-sm" class="col-1 col-md-1 p-0"></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="text-center">
+            <small>
+                Matej Arlović<br>
+                © 2020. <a href="https://themastergames.com">Master Games</a> All rights reserved.
+            </small>
+        </div>
+    </footer>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="js/d3.slider.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="js/map.js"></script>
+    <script src="js/stations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
 </html>
