@@ -49,7 +49,17 @@ class Stations {
 
     _drawStations() {
 
-        this.svg.selectAll("circle")
+        const tooltip = d3.select("body")
+            .append("div")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("visibility", "hidden")
+            .style("background", "#ffffff")
+            .style("border", "1px solid #3d3e40")
+            .style("padding", "8px")
+            .text("a simple tooltip");
+
+        const station = this.svg.selectAll("circle")
             .data(this.stations)
             .enter()
             .append("circle")
@@ -66,7 +76,44 @@ class Stations {
             .attr("opacity", 0.7)
             .style("stroke", "black")
             .style("stroke-width", 1)
-            .style("stroke-opacity", 1);
+            .style("stroke-opacity", 1)
+            .attr("class", "aq-stat-icon")
+            .on("mouseover", (d) => {
+                station.style("cursor", "pointer");
+                tooltip.text(d.name);
+                return tooltip.style("visibility", "visible");
+            })
+            .on("mousemove", () => {
+                return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+            })
+            .on("mouseout", () => {
+                return tooltip.style("visibility", "hidden");
+            })
+            .on("click", (d) => {
+                $(".aq-stat").show();
+                $("#aq-stat-id").text(d.id);
+                $("#aq-stat-network").text(d.network);
+                $("#aq-stat-name").text(d.name);
+                $("#aq-stat-date").text(this.dates[this.sliderValue - 1]);
+
+                const quality_index = d.indexes[this.sliderValue - 1];
+                if (quality_index == 0) {
+                    $("#aq-stat-index").text("Dobro").css("background-color", "#55EFE5");
+                } else if (quality_index == 1) {
+                    $("#aq-stat-index").text("Prihvatljivo").css("background-color", "#54CAAA");
+                } else if (quality_index == 2) {
+                    $("#aq-stat-index").text("Umjereno").css("background-color", "#EFE558");
+                } else if (quality_index == 3) {
+                    $("#aq-stat-index").text("Loše").css("background-color", "#FE5355");
+                } else if (quality_index == 4) {
+                    $("#aq-stat-index").text("Vrlo loše").css("background-color", "#940D36"); 
+                } else if (quality_index == 5) {
+                    $("#aq-stat-index").text("Izuzetno loše").css("background-color", "#7D2181");
+                } else {
+                    $("#aq-stat-index").text("Nema dovoljno podataka").css("background-color", "gray");
+                }                
+                return;
+            });
     }
 
     _colorizeStations(dateIndex) {
@@ -74,7 +121,6 @@ class Stations {
         this.svg.selectAll("circle")
             .data(this.stations)
             .attr("fill", (d) => {
-
                 const quality_index = d.indexes[dateIndex];
                 if (quality_index == 0) {
                     return "#55EFE5";
@@ -85,6 +131,8 @@ class Stations {
                 } else if (quality_index == 3) {
                     return "#FE5355";
                 } else if (quality_index == 4) {
+                    return "#940D36";
+                } else if (quality_index == 5) {
                     return "#7D2181";
                 }
                 return "gray";

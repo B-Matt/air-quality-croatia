@@ -30,5 +30,12 @@ $(document).ready(() => {
 
         $("#pause-button").hide();
         $("#animate-button").show();
-    })
+    });
+
+    $(document).mouseup((e) => {
+
+        if ($(e.target).closest(".aq-stat-icon").length === 0) { 
+            $(".aq-stat").hide();
+        }
+    });
 });

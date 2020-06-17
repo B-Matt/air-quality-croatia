@@ -18,9 +18,10 @@
   line-height: 4.3;
 }
 
+.aq-stat,
 .aq-legend {
   position: relative;
-  clear: both;  
+  clear: both;
   z-index: 1000;
 }
 
@@ -28,9 +29,34 @@
   margin-bottom: 0px;
 }
 
+.aq-stat td,
 .aq-legend td {
   padding: .5rem !important;
-  color: black;
+}
+
+.aq-stat {
+  display: none;
+}
+
+.aq-stat .first {
+  color: var(--primary);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.aq-stat-info {
+  font-size: 85%;
+  font-weight: 400;
+  text-align: justify;
+}
+
+#aq-stat-index {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px;
+  text-align: center;
 }
 
 footer {
@@ -146,9 +172,20 @@ footer {
     line-height: 1.1;
   }
 
+  .aq-stat {
+    position: absolute;
+    top: 25px;
+    width: 250px;
+  }
+
+  .aq-legend td {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+
   .aq-legend {
     position: absolute;
-    bottom: 25px;
+    bottom: 0;
     width: 250px;
   }
 }
