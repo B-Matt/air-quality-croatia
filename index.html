@@ -25,11 +25,55 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-    <div class="container">
-        <h1 class="text-center pt-3 m-0">Air Quality In Republic Croatia</h1>
-        <h4 id="aq-dates"></h4>
+    <h1 class="text-center pt-3 m-0">Kvaliteta zraka u Republici Hrvatskoj</h1>
+    <h4 id="aq-dates"></h4>
 
-        <div id="map" class="text-center"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                <div class="aq-legend">
+                    <span class="text-primary text-uppercase">Legenda</span>
+                    <table class="legend table table-condensed">
+                        <tbody>
+                            <tr>
+                                <td class="first" style="background-color: rgb(85, 239, 229);"></td>
+                                <td>Dobro</td>
+                            </tr>
+                            <tr>
+                                <td class="first" style="background-color: rgb(84, 202, 170);"></td>
+                                <td>Prihvatljivo</td>
+                            </tr>
+                            <tr>
+                                <td class="first" style="background-color: rgb(239, 229, 88);"></td>
+                                <td>Umjereno</td>
+                            </tr>
+                            <tr>
+                                <td class="first" style="background-color: rgb(254, 83, 85);"></td>
+                                <td>Loše</td>
+                            </tr>
+                            <tr>
+                                <td class="first" style="background-color: rgb(148, 13, 54);"></td>
+                                <td>Vrlo loše</td>
+                            </tr>
+                            <tr>
+                                <td class="first" style="background-color: rgb(125, 33, 129);"></td>
+                                <td>Izuzetno loše</td>
+                            </tr>
+                            <tr>
+                                <td class="first" style="background-color: rgb(111, 111, 111);"></td>
+                                <td>Nema dovoljno podataka</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a href="http://iszz.azo.hr/iskzl/help.htm" class="legend-link">EU indeks kvalitete zraka</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div id="map" class="text-center"></div>
+            </div>
+        </div>        
         <div class="container">
             <div class="row">
                 <div class="col-2 col-md-1 offset-1 offset-md-3 p-0 mr-0 text-center aq-btns">
