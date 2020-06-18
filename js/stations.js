@@ -1,6 +1,6 @@
 class Stations {
 
-    constructor(size) {
+    constructor(width, height) {
 
         this.slider = null;
         this.sliderValue = 1;
@@ -11,7 +11,7 @@ class Stations {
         this.projectCircles = d3.geo.mercator()
             .center([16.55, 44.38])
             .scale(6000)
-            .translate([size[0] / 2, size[1] / 2]);
+            .translate([width / 2, height / 2]);
     }
 
     loadStations(svg) {
@@ -175,7 +175,8 @@ class Stations {
         const fromDate = date.getDate() + "." + (date.getMonth() + 1) + "." + (date.getFullYear() - 1);
         const toDate = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
         //const url = `https://themastergames.com/ferit/air/api/api.php?from=${fromDate}&to=${toDate}`;
-        const url = './test_data.json';
+        //const url = './test_data.json';
+        const url = `http://localhost/air-quality-croatia/api/api.php?from=${fromDate}&to=${toDate}`;
 
         let response = await fetch(url, {
             cache: "force-cache"

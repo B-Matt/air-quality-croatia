@@ -1,5 +1,6 @@
 <?php
 require_once('./request.php');
+require_once('./cache.php');
 
 ini_set("precision", 14); 
 ini_set("serialize_precision", -1);
@@ -10,6 +11,14 @@ if(!isset($_GET['from']) || !isset($_GET['to']))
     $response['message'] = "Missing parameters!";
     http_response_code(400);
     die(json_encode($response, JSON_UNESCAPED_UNICODE));
+    die();
+}
+
+$cache = new Cache();
+if($cache->is_cache())
+{
+    http_response_code(200);
+    echo $cache->get_cache();
     die();
 }
 
@@ -31,6 +40,8 @@ for($i = 0; $i < count($stations); $i++)
     $response[$station_id]["indexes"] = $request->process_data($data);
 }
 $response["dates"] = $request->get_dates();
+$response = json_encode($response);
 
 http_response_code(200);
-echo json_encode($response);
+echo $response;
+$cache->write_cache($response);

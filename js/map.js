@@ -1,39 +1,46 @@
 class Map {
 
-    constructor() {
+    constructor(width, height) {
 
-        this.width = 960;
-        this.height = 700;
-        
         this.projection = d3.geo.mercator()
             .center([0, 10])
             .scale(6000)
             .translate([17600, 4500])
             .rotate([-180, 0]);
-        
+
         this.path = d3.geo.path()
             .projection(this.projection);
-        
+
+        this.zoom = d3.behavior.zoom()
+            .translate(this.projection.translate())
+            .scale(this.projection.scale())
+            .scaleExtent([1, 8])
+            .on("zoom", this._updateMap);
+
         this.svg = d3.select("#map").append("svg")
-            .attr("viewBox", "0 0 " + this.width + " " + this.height);
+            .attr("viewBox", "0 0 " + width + " " + height)
+            .call(this.zoom);
     }
 
     loadMap(callback) {
 
+        const scope = this;
         d3.json("cro_regv3.json", (error, o) => {
-            const data = topojson.feature(o, o.objects.layer1);
-            this.svg.selectAll("path.county")
-                .data(data.features)
+
+            scope.data = topojson.feature(o, o.objects.layer1);
+            scope.svg.selectAll("path.county")
+                .data(scope.data.features)
                 .enter()
                 .append("path")
                 .attr("class", "county")
                 .attr("id", (d) => {
                     return d.id;
                 })
-                .attr("d", this.path).style("fill", "#778ba1")
+                .attr("d", scope.path).style("fill", "#778ba1")
                 .style("stroke", "white")
                 .style("stroke-width", 1)
                 .style("stroke-opacity", 1);
+            
             callback();
         });
     }
@@ -42,7 +49,16 @@ class Map {
         return this.svg;
     }
 
-    getSize() {
-        return [this.width, this.height];
+    _updateMap() {
+
+        const svg = d3.select("svg");
+        svg.selectAll("path")
+            .attr("transform", "translate(" + d3.event.translate.join(",") + ")" + " scale(" + d3.event.scale + ")");
+        
+        svg.selectAll("circle")
+            .attr("transform", "translate(" + d3.event.translate.join(",") + ") scale(" + d3.event.scale + ")")
+            .transition()
+            .attr("r", 10 / d3.event.scale)
+            .style("stroke-width", 1 / d3.event.scale);
     }
 }
