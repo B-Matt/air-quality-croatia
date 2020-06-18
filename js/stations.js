@@ -194,7 +194,7 @@ class Stations {
         const date = new Date();
         const fromDate = date.getDate() + "." + (date.getMonth() + 1) + "." + (date.getFullYear() - 1);
         const toDate = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
-        const url = `https://themastergames.com/ferit/air/api/api.php?from=${fromDate}&to=${toDate}`;
+        const url = `http://localhost/air-quality-croatia/api/api.php?from=${fromDate}&to=${toDate}`;
 
         let response = await fetch(url, {
             cache: "force-cache"
