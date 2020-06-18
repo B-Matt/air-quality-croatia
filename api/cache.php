@@ -10,7 +10,7 @@ class Cache {
     {
         $this->cache = __DIR__ . DIRECTORY_SEPARATOR . "aq_index_cache.json";
         $this->force_refresh = false;
-        $this->refresh = 60 * 60;
+        $this->refresh = 43200;
     }
 
     function is_cache()

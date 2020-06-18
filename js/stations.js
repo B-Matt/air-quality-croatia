@@ -9,11 +9,15 @@ class Stations {
         this.stations = null;
 
         this.projectCircles = d3.geo.mercator()
-            .center([16.55, 44.38])
+            .center([16.52, 44.415])
             .scale(6000)
             .translate([width / 2, height / 2]);
     }
 
+    /**
+     * Loads stations from station_data.json file.
+     * @param svg
+     */
     loadStations(svg) {
 
         this.svg = svg;
@@ -37,6 +41,9 @@ class Stations {
         });
     }
 
+    /**
+     * Animates changing color of station markers on map.
+     */
     animate() {
 
         const scope = this;
@@ -47,6 +54,9 @@ class Stations {
         }, 1000);
     }
 
+    /**
+     * Draws stations on map.
+     */
     _drawStations() {
 
         const tooltip = d3.select("body")
@@ -116,6 +126,10 @@ class Stations {
             });
     }
 
+    /**
+     * Colorize station markers based on current dataIndex.
+     * @param {*} dateIndex 
+     */
     _colorizeStations(dateIndex) {
 
         this.svg.selectAll("circle")
@@ -143,6 +157,9 @@ class Stations {
             .style("stroke-opacity", 1);
     }
 
+    /**
+     * Shows d3 slider for changing dateIndex variable.
+     */
     _showSlider() {
 
         $("#aq-dates-sm").text(this.dates[this.sliderValue - 1]);
@@ -169,14 +186,15 @@ class Stations {
         d3.select('#slider').call(slider);
     }
 
+    /**
+     * Loads air quality index from API.
+     */
     async _loadStationsData() {
 
         const date = new Date();
         const fromDate = date.getDate() + "." + (date.getMonth() + 1) + "." + (date.getFullYear() - 1);
         const toDate = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
-        //const url = `https://themastergames.com/ferit/air/api/api.php?from=${fromDate}&to=${toDate}`;
-        //const url = './test_data.json';
-        const url = `http://localhost/air-quality-croatia/api/api.php?from=${fromDate}&to=${toDate}`;
+        const url = `https://themastergames.com/ferit/air/api/api.php?from=${fromDate}&to=${toDate}`;
 
         let response = await fetch(url, {
             cache: "force-cache"

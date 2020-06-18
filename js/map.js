@@ -22,6 +22,10 @@ class Map {
             .call(this.zoom);
     }
 
+    /**
+     * Loads map from JSON file and draws map segments on SVG.
+     * @param {*} callback 
+     */
     loadMap(callback) {
 
         const scope = this;
@@ -45,10 +49,16 @@ class Map {
         });
     }
 
+    /**
+     * Returns SVG element.
+     */
     getSvg() {
         return this.svg;
     }
 
+    /**
+     * Updates map translation and scale when user zooms/pans map.
+     */
     _updateMap() {
 
         const svg = d3.select("svg");
