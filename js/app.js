@@ -1,12 +1,12 @@
 const mapSizes = [960, 700];
+let mapScale = 1;
 
 const map = new Map(mapSizes[0], mapSizes[1]);
 const stations = new Stations(mapSizes[0], mapSizes[1]);
 
 map.loadMap(() => {
-    stations.loadStations(map.getSvg())
+    stations.loadStations(map.getContainer())
 });
-
 
 $(document).ready(() => {
 

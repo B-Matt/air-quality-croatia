@@ -79,13 +79,13 @@ class Stations {
             .attr("cy", (d) => {
                 return this.projectCircles([d.location[1], d.location[0]])[1];
             })
-            .attr("r", "10px")
+            .attr("r", 10 / mapScale)
             .attr("fill", (d) => {
                 return "gray";
             })
             .attr("opacity", 0.7)
             .style("stroke", "black")
-            .style("stroke-width", 1)
+            .style("stroke-width", 1 / mapScale)
             .style("stroke-opacity", 1)
             .attr("class", "aq-stat-icon")
             .on("mouseover", (d) => {
@@ -153,7 +153,7 @@ class Stations {
             })
             .attr("opacity", 0.7)
             .style("stroke", "black")
-            .style("stroke-width", 1)
+            .style("stroke-width", 1 / mapScale)
             .style("stroke-opacity", 1);
     }
 

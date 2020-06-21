@@ -12,14 +12,13 @@ class Map {
             .projection(this.projection);
 
         this.zoom = d3.behavior.zoom()
-            .translate(this.projection.translate())
-            .scale(this.projection.scale())
             .scaleExtent([1, 8])
             .on("zoom", this._updateMap);
 
-        this.svg = d3.select("#map").append("svg")
-            .attr("viewBox", "0 0 " + width + " " + height)
-            .call(this.zoom);
+        this.svg = d3.select("#map").append("svg")            
+            .attr("viewBox", [0, 0, width, height]);
+
+        this.g = this.svg.append("g");
     }
 
     /**
@@ -32,7 +31,7 @@ class Map {
         d3.json("cro_regv3.json", (error, o) => {
 
             scope.data = topojson.feature(o, o.objects.layer1);
-            scope.svg.selectAll("path.county")
+            scope.g.selectAll("path.county")
                 .data(scope.data.features)
                 .enter()
                 .append("path")
@@ -45,6 +44,7 @@ class Map {
                 .style("stroke-width", 1)
                 .style("stroke-opacity", 1);
             
+            scope.svg.call(scope.zoom);
             callback();
         });
     }
@@ -52,8 +52,8 @@ class Map {
     /**
      * Returns SVG element.
      */
-    getSvg() {
-        return this.svg;
+    getContainer() {
+        return this.g;
     }
 
     /**
@@ -61,14 +61,14 @@ class Map {
      */
     _updateMap() {
 
-        const svg = d3.select("svg");
-        svg.selectAll("path")
-            .attr("transform", "translate(" + d3.event.translate.join(",") + ")" + " scale(" + d3.event.scale + ")");
+        const g = d3.select("g");
+        g.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
         
-        svg.selectAll("circle")
-            .attr("transform", "translate(" + d3.event.translate.join(",") + ") scale(" + d3.event.scale + ")")
+        g.selectAll("circle")
             .transition()
             .attr("r", 10 / d3.event.scale)
             .style("stroke-width", 1 / d3.event.scale);
+
+        mapScale = d3.event.scale;
     }
 }
