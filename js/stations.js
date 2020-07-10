@@ -166,6 +166,10 @@ class Stations {
     _updateStationData(dateIndex) {
 
         const d = this.clickedStation;
+        if(d === undefined) {
+            return;
+        }
+
         $("#aq-stat-id").text(d.id);
         $("#aq-stat-network").text(d.network);
         $("#aq-stat-name").text(d.name);
