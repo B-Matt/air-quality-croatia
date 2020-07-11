@@ -163,6 +163,58 @@ footer {
   z-index: 1;
 }
 
+#aq-stat-graph {
+  display: none;
+  text-align: center;
+  padding-top: 25px;
+}
+
+#aq-stat-graph .title {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+#aq-stat-graph-wrapper {
+  font: 10px sans-serif;
+}
+ 
+#aq-stat-graph .axis path,
+#aq-stat-graph .axis line {
+	fill: none;
+	stroke: grey;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+
+#aq-stat-graph .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+}
+
+#aq-stat-graph-legend {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  flex: 50%;
+  margin-bottom: 10px;
+}
+
+.legend-item--header {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 10px;
+  font-size: 15px;
+}
+
+.legend-item--color {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+
 /*
  * Media Qureries
  */
@@ -173,9 +225,8 @@ footer {
   }
 
   .aq-stat {
-    position: absolute;
-    top: 0;
-    width: 250px;
+    width: 300px;
+    margin: 0 auto;
   }
 
   .aq-legend td {

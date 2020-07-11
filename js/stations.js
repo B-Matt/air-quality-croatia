@@ -7,6 +7,7 @@ class Stations {
 
         this.dates = null;
         this.stations = null;
+        this.graph = new Graph(400, 200, {top: 30, right: 0, bottom: 0, left: 30});
 
         this.projectCircles = d3.geo.mercator()
             .center([16.52, 44.415])
@@ -28,9 +29,10 @@ class Stations {
 
                 for (let i = 0; i < stations.length; i++) {
                     stations[i]["indexes"] = data[stations[i]["id"]].indexes;
+                    stations[i]["rest_data"] = data[stations[i]["id"]].rest_data;
                 }
-                data.dates[13] = 0;
-                
+
+                //data.dates[13] = "0.2020";
                 scope.dates = data.dates;
                 scope.stations = stations;
 
@@ -101,7 +103,9 @@ class Stations {
                 return tooltip.style("visibility", "hidden");
             })
             .on("click", (d) => {
-                $(".aq-stat").show();
+                
+                $(".aq-stat").show();               
+
                 $("#aq-stat-id").text(d.id);
                 $("#aq-stat-network").text(d.network);
                 $("#aq-stat-name").text(d.name);
@@ -123,6 +127,8 @@ class Stations {
                 } else {
                     $("#aq-stat-index").text("Nema dovoljno podataka").css("background-color", "gray");
                 }
+
+                scope.graph.show(d, scope.dates);
                 scope.clickedStation = d;               
                 return;
             });

@@ -38,6 +38,7 @@ for($i = 0; $i < count($stations); $i++)
     
     $data = $request->load_data($urls, ['pm25', 'pm10', 'no2', 'o3', 'so2']);
     $response[$station_id]["indexes"] = $request->process_data($data);
+    $response[$station_id]["rest_data"] = $data;
 }
 $response["dates"] = $request->get_dates();
 $response = json_encode($response);

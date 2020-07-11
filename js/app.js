@@ -37,7 +37,9 @@ $(document).ready(() => {
     $(document).mouseup((e) => {
 
         if ($(e.target).closest(".aq-stat-icon").length === 0) { 
+            
             $(".aq-stat").hide();
+            stations.graph.hide();
         }
     });
 });
