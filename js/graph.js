@@ -19,7 +19,7 @@ class Graph {
             .range([this.height, 0]);
 
         this.x = d3.time.scale()                    
-            .range([0, this.width + 50]);
+            .range([0, this.width]);
 
         this.yAxis = d3.svg.axis()
             .orient("left")
@@ -29,7 +29,7 @@ class Graph {
             .orient("bottom")
             .scale(this.x)
             .ticks(d3.time.months)
-            .tickSize(10, 0)
+            .tickSize(12, 0)
             .tickFormat(d3.time.format("%b %y"));
 
         const scope = this;
@@ -82,7 +82,7 @@ class Graph {
             .style("fill", "#A9A9A9")
             .attr("opacity", 0.5)
             .call(this._makeGridAxis()
-                .tickSize(-this.width - 50, 0, 0)
+                .tickSize(-this.width, 0, 0)
                 .tickFormat("")
             );
 
@@ -159,42 +159,6 @@ class Graph {
     }
 
     /**
-     * Updates text inside tooltip.
-     * @param {*} mouse 
-     * @param {*} data 
-     */
-    _updateTooltip(mouse, data) {
-
-        var g = d3.select(".mouse-per-line");
-        var mousePos = d3.transform(g.attr("transform")).translate;
-        const scope = this;
-        
-        this.tooltip
-            .style('display', 'block')
-            .style('left', (mousePos[0] + 50 >= scope.width ? mousePos[0] - 65 : mousePos[0] + 50) + 'px')
-            .style('top', (scope.height + mousePos[1] <= scope.height ? 270 : scope.height + mousePos[1]) + 'px')
-            .style('font-size', 12)
-            .style('text-align', 'left')
-            .style("background", "#ffffff")
-            .style("border", "1px solid #3d3e40")
-            .style("padding", "8px")
-            .append('div')
-            .style('font-size', 10)
-            .html(() => {
-
-                let string = "";
-                data.forEach(d => {
-
-                    var xDate = scope.x.invert(mouse[0])
-                    var bisect = d3.bisector(function (d) { return d.x }).left
-                    var idx = bisect(d.values, xDate)
-                    string += d.key + ": " + Math.round((d.values[idx - 1].y + Number.EPSILON) * 100) / 100 + " µg/m3<br>"; 
-                });
-                return string;                
-            });
-    }
-
-    /**
      * Creates and shows tooltip on graph.
      * @param {*} data 
      */
@@ -245,12 +209,14 @@ class Graph {
             .on('mousemove', function () {
                 
                 const mouse = d3.mouse(this);
+                let id = 0;
+
                 d3.selectAll(".mouse-per-line")
                     .attr("transform", (d, i) => {
 
                         const xDate = scope.x.invert(mouse[0]);
                         const bisect = d3.bisector(d => { return d.x; }).left;
-                        const id = bisect(d.values, xDate);
+                        id = bisect(d.values, xDate) - 1;
 
                         d3.select(".mouse-line")
                             .attr("d", function () {
@@ -263,9 +229,46 @@ class Graph {
                     });
 
                 d3.selectAll("#tooltip").html('');
-                scope._updateTooltip(mouse, data)
+                scope._updateTooltip(mouse, data, id);
 
             })
+    }
+
+    /**
+     * Updates text inside tooltip.
+     * @param {*} mouse 
+     * @param {*} data 
+     * @param {*} id
+     */
+    _updateTooltip(mouse, data, id) {
+
+        const mousePos = d3.transform(d3.select(".mouse-per-line").attr("transform")).translate;
+        const scope = this;
+        const parseDate = d3.time.format("%m.%Y");
+
+        this.tooltip
+            .html(() => {
+                return 'Za <b>' + parseDate(data[0].values[id].x) + '</b>:<br>';
+            })
+            .style('display', 'block')
+            .style('left', (mousePos[0] + 50 >= scope.width ? mousePos[0] - 65 : mousePos[0] + 50) + 'px')
+            .style('top', (scope.height + mousePos[1] <= scope.height ? 270 : scope.height + mousePos[1]) + 'px')
+            .style('font-size', 12)
+            .style('text-align', 'left')
+            .style("background", "#ffffff")
+            .style("border", "1px solid #3d3e40")
+            .style("padding", "8px")
+            .append('div')
+            .style('font-size', 10)
+            .html(() => {
+
+                let string = "";
+                data.forEach(d => {
+
+                    string += "<u>" + d.key + "</u>: " + Math.round((d.values[id].y + Number.EPSILON) * 100) / 100 + " µg/m3<br>"; 
+                });
+                return string;                
+            });
     }
 
     /**
