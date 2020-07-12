@@ -10,8 +10,7 @@ class Graph {
 
         this.svg = d3.select("#aq-stat-graph-wrapper")
             .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("viewBox", `0 0 ${width} ${height}`)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
@@ -251,7 +250,7 @@ class Graph {
                 return 'Za <b>' + parseDate(data[0].values[id].x) + '</b>:<br>';
             })
             .style('display', 'block')
-            .style('left', (mousePos[0] + 50 >= scope.width ? mousePos[0] - 65 : mousePos[0] + 50) + 'px')
+            .style('left', (mousePos[0] + 100 >= scope.width ? mousePos[0] - 100 : mousePos[0] + 50) + 'px')
             .style('top', (scope.height + mousePos[1] <= 270 ? 300 : scope.height + mousePos[1]) + 'px')
             .style('font-size', 12)
             .style('text-align', 'left')

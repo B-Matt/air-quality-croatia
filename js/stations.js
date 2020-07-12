@@ -7,7 +7,7 @@ class Stations {
 
         this.dates = null;
         this.stations = null;
-        this.graph = new Graph(400, 250, {top: 30, right: 0, bottom: 60, left: 30});
+        this.graph = new Graph(400, 200, {top: 30, right: 20, bottom: 60, left: 30});
 
         this.projectCircles = d3.geo.mercator()
             .center([16.52, 44.415])
