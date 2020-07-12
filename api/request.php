@@ -104,9 +104,9 @@ class Request
     }
 
     /**
-     * Process gathered data from API.
+     * Gets overall index from all pollutant indexes.
      */
-    public function process_data($data)
+    public function get_overall_index($data)
     {
         $indexes = [];
         foreach($data as $key => $value)
@@ -130,6 +130,25 @@ class Request
             $overall_index[] = $this->find_max_index($index_data);
         }
         return $overall_index;
+    }
+
+    /**
+     * Gets pollutant index based on the key (pollutant eg. so2).
+     */
+    public function get_pollutant_index($data, $pollutant) 
+    {
+        $indexes = [];
+        foreach($data as $key => $value) 
+        {
+            if($key == $pollutant) 
+            {
+                for($i = 0; $i < 13; $i++)
+                {
+                    $indexes[$key][] = isset($value[$i]) ? $this->check_index($key, $value[$i]) : -1;
+                }
+            }
+        }
+        return (array_key_exists($pollutant, $indexes) ? $indexes[$pollutant] : array_fill(0, 12, -1));
     }
 
     /**

@@ -19,6 +19,7 @@ class Map {
             .attr("viewBox", [0, 0, width, height]);
 
         this.g = this.svg.append("g");
+        this.pollutant = "pm10";
     }
 
     /**

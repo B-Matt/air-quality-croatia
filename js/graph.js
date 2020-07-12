@@ -19,7 +19,7 @@ class Graph {
             .range([this.height, 0]);
 
         this.x = d3.time.scale()                    
-            .range([0, this.width]);
+            .range([0, this.width - 5]);
 
         this.yAxis = d3.svg.axis()
             .orient("left")
@@ -93,7 +93,7 @@ class Graph {
             .attr("fill", "none")
             .attr("stroke", d => { return this.color(d.key) })
             .attr("stroke-width", 2)
-            .attr("opacity", d => { return d.key == pollutant ? 1 : 0.5; })
+            .attr("opacity", d => { return stations.pollutant == "all" ? 1 : d.key == stations.pollutant ? 1 : 0.5; })
             .attr("d", d => {
 
                 return d3.svg.line()
@@ -219,7 +219,7 @@ class Graph {
                         id = bisect(d.values, xDate) - 1;
 
                         d3.select(".mouse-line")
-                            .attr("d", function () {
+                            .attr("d", () => {
 
                                 let tmpData = "M" + scope.x(d.values[id].x) + "," + (scope.height);
                                 tmpData += " " + scope.x(d.values[id].x) + "," + 0;
@@ -229,7 +229,7 @@ class Graph {
                     });
 
                 d3.selectAll("#tooltip").html('');
-                scope._updateTooltip(mouse, data, id);
+                scope._updateTooltip(data, id);
 
             })
     }
@@ -240,7 +240,7 @@ class Graph {
      * @param {*} data 
      * @param {*} id
      */
-    _updateTooltip(mouse, data, id) {
+    _updateTooltip(data, id) {
 
         const mousePos = d3.transform(d3.select(".mouse-per-line").attr("transform")).translate;
         const scope = this;
@@ -252,7 +252,7 @@ class Graph {
             })
             .style('display', 'block')
             .style('left', (mousePos[0] + 50 >= scope.width ? mousePos[0] - 65 : mousePos[0] + 50) + 'px')
-            .style('top', (scope.height + mousePos[1] <= scope.height ? 270 : scope.height + mousePos[1]) + 'px')
+            .style('top', (scope.height + mousePos[1] <= 270 ? 300 : scope.height + mousePos[1]) + 'px')
             .style('font-size', 12)
             .style('text-align', 'left')
             .style("background", "#ffffff")

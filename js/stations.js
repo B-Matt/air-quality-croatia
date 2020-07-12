@@ -13,6 +13,8 @@ class Stations {
             .center([16.52, 44.415])
             .scale(6000)
             .translate([width / 2, height / 2]);
+
+        this.pollutant = "all";
     }
 
     /**
@@ -32,7 +34,6 @@ class Stations {
                     stations[i]["rest_data"] = data[stations[i]["id"]].rest_data;
                 }
 
-                //data.dates[13] = "0.2020";
                 scope.dates = data.dates;
                 scope.stations = stations;
 
@@ -54,6 +55,14 @@ class Stations {
             const nextValue = (scope.sliderValue + 1) % scope.dates.length;
             scope.slider.setValue(nextValue);
         }, 1000);
+    }
+
+    /**
+     * Updates map when pollutant type changes in the filter settings.
+     */
+    update() {
+
+        this._colorizeStations(this.sliderValue - 1);
     }
 
     /**
@@ -111,7 +120,7 @@ class Stations {
                 $("#aq-stat-name").text(d.name);
                 $("#aq-stat-date").text(scope.dates[scope.sliderValue - 1]);
 
-                const quality_index = d.indexes[scope.sliderValue - 1];
+                const quality_index = d.indexes[scope.pollutant][scope.sliderValue - 1];
                 if (quality_index == 0) {
                     $("#aq-stat-index").text("Dobro").css("background-color", "#55EFE5");
                 } else if (quality_index == 1) {
@@ -140,10 +149,12 @@ class Stations {
      */
     _colorizeStations(dateIndex) {
 
+        const scope = this;
         this.svg.selectAll("circle")
             .data(this.stations)
             .attr("fill", (d) => {
-                const quality_index = d.indexes[dateIndex];
+                
+                const quality_index = d.indexes[scope.pollutant][dateIndex];
                 if (quality_index == 0) {
                     return "#55EFE5";
                 } else if (quality_index == 1) {

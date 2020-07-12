@@ -169,7 +169,8 @@ footer {
   padding-top: 25px;
 }
 
-#aq-stat-graph .title {
+#aq-stat-graph .title,
+#aq-data-select .title {
   font-size: 13px;
   color: #6c757d;
 }
