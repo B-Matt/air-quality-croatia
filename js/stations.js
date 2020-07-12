@@ -60,15 +60,33 @@ class Stations {
     /**
      * Updates map when pollutant type changes in the filter settings.
      */
-    update() {
+    update(sliderValue) {
 
-        this._colorizeStations(this.sliderValue - 1);
+        if(sliderValue == undefined) {
+            sliderValue = this.sliderValue - 1;
+        }
+
+        this.svg.selectAll("circle").remove();
+        this._drawStations(sliderValue);
+        this._colorizeStations(sliderValue);
+    }
+
+    /**
+     * Returns max value of the slider.
+     */
+    getMaxSliderValue() {
+        return this.dates.length - 1;
     }
 
     /**
      * Draws stations on map.
+     * @param {*} dateIndex
      */
-    _drawStations() {
+    _drawStations(dateIndex) {
+
+        if(dateIndex == undefined) {
+            dateIndex = this.sliderValue - 1;
+        }
 
         const tooltip = d3.select("body")
             .append("div")
@@ -118,9 +136,10 @@ class Stations {
                 $("#aq-stat-id").text(d.id);
                 $("#aq-stat-network").text(d.network);
                 $("#aq-stat-name").text(d.name);
-                $("#aq-stat-date").text(scope.dates[scope.sliderValue - 1]);
+                $("#aq-stat-date").text(scope.dates[dateIndex]);
 
-                const quality_index = d.indexes[scope.pollutant][scope.sliderValue - 1];
+                const quality_index = d.indexes[scope.pollutant][dateIndex];
+
                 if (quality_index == 0) {
                     $("#aq-stat-index").text("Dobro").css("background-color", "#55EFE5");
                 } else if (quality_index == 1) {
@@ -192,7 +211,8 @@ class Stations {
         $("#aq-stat-name").text(d.name);
         $("#aq-stat-date").text(this.dates[dateIndex]);
 
-        const quality_index = d.indexes[dateIndex];
+        const quality_index = d.indexes[this.pollutant][dateIndex];
+
         if (quality_index == 0) {
             $("#aq-stat-index").text("Dobro").css("background-color", "#55EFE5");
         } else if (quality_index == 1) {

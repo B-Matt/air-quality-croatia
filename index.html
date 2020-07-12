@@ -27,12 +27,12 @@
         <![endif]-->
 
     <h1 class="text-center pt-3 m-0">Kvaliteta zraka u Republici Hrvatskoj</h1>
-    <h4 id="aq-dates"></h4>
+    <h4 id="aq-subtitle" class="text-center"></h4>
 
     <div class="fluid-container">
         <div class="row w-100 mx-0">
             <div class="col-md-2">
-                <div id="aq-data-select" class="ml-5 form-group">
+                <div id="aq-data-select" class="ml-5 form-group">                    
                     <span class="title">Način prikaza podataka</span>
                     <select id="aq-pollutant-type" class="form-control">
                         <option value="all">Index</option>
@@ -42,6 +42,18 @@
                         <option value="o3">o3</option>
                         <option value="so2">so2</option>
                     </select>
+                    <div id="aq-realtime-data">
+                        <button id="aq-realtime-data-btn" class="btn btn-primary w-100 mt-2 p-2">Prikaži trenutne podatke</button>
+                        <div class="text-center">
+                            <span class="title"></span>
+                        </div>
+                    </div>
+                    <div id="aq-range-data">
+                        <button id="aq-range-data-btn" class="btn btn-secondary w-100 mt-2 p-2">Prikaži podatke u rasponu</button>
+                        <div class="text-center">
+                            <span class="title"></span>
+                        </div>
+                    </div>                                   
                 </div>
                 <div class="aq-legend ml-5">
                     <span class="text-primary text-uppercase">Legenda</span>
@@ -114,7 +126,7 @@
                 </div>
             </div>
         </div>
-        <div class="row w-100 mx-0">
+        <div id="aq-timeline" class="row w-100 mx-0">
             <div class="col-2 col-md-1 offset-1 offset-md-3 p-0 mr-0 text-center aq-btns">
                 <a href="#" id="animate-button">
                     <i class="material-icons">play_circle_outline</i>
