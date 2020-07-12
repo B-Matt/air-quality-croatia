@@ -3,9 +3,10 @@ class Graph {
     constructor(width, height, margin) {
 
         this.isShown = false;
-
+        
         this.width = width - margin.left - margin.right;
         this.height = height - margin.top - margin.bottom;
+        this.margin = margin;
 
         this.svg = d3.select("#aq-stat-graph-wrapper")
             .append("svg")
@@ -35,8 +36,22 @@ class Graph {
         this.line = d3.svg.line()
             .x(d => { return scope.x(d.x); })
             .y(d => { return scope.y(d.y); });
+
+        this.color = d3.scale.category20();
+
+        this.tooltip = d3.select("#aq-stat-graph-wrapper").append("div")
+            .attr('id', 'tooltip')
+            .style('position', 'absolute')
+            .style("background-color", "#D3D3D3")
+            .style('padding', 6)
+            .style('display', 'none')
     }
 
+    /**
+     * Shows graph.
+     * @param {*} data 
+     * @param {*} dates 
+     */
     show(data, dates) {
         
         const scope = this;
@@ -50,48 +65,35 @@ class Graph {
         const sumstat = d3.nest()
             .key(d => { return d.name; })
             .entries(parsedData);
-        
-        const res = sumstat.map(d => { return d.key })
-        const color = d3.scale.category20()
 
         this.svg.append("g")
             .attr("class", "axis x")
+            .style("fill", "#A9A9A9")
             .attr("transform", "translate(0," + this.height + ")")
             .call(this.xAxis);
             
         this.svg.append("g")
             .attr("class", "axis y")
+            .style("fill", "#A9A9A9")
             .call(this.yAxis);
 
         this.svg.append("g")            
             .attr("class", "grid")
+            .style("fill", "#A9A9A9")
+            .attr("opacity", 0.5)
             .call(this._makeGridAxis()
                 .tickSize(-this.width - 50, 0, 0)
                 .tickFormat("")
             );
-
-        this.svg
-            .data(sumstat)
-            .enter()
-            .append("path")
-            .attr("class", "signal")
-            .attr("fill", "none")
-            .attr("stroke", "red")
-            .attr("stroke-width", 1)
-            .attr("d", d => {
-                return d3.svg.line()
-                    .x(scope.x(1))
-                    .y(10)
-            });
 
         this.svg.selectAll(".line")
             .data(sumstat)
             .enter()
             .append("path")
             .attr("fill", "none")
-            .attr("stroke", d => { return color(d.key) })
-            .attr("stroke-width", 3)
-            .attr("opacity", d => { console.log(d); return 1; })
+            .attr("stroke", d => { return this.color(d.key) })
+            .attr("stroke-width", 2)
+            .attr("opacity", d => { return d.key == pollutant ? 1 : 0.5; })
             .attr("d", d => {
 
                 return d3.svg.line()
@@ -101,25 +103,20 @@ class Graph {
                     (d.values)
             });
 
-        const item = d3.select("#aq-stat-graph-legend")
-            .selectAll('div')
-            .data(sumstat)
-            .enter()
-            .append('div')
-            .attr('class', 'legend-item');
+        // Legend
+        this._createLegend(sumstat);
 
-        item.append('div')
-            .attr('class', 'legend-item--color')
-            .style('background-color', (d, i) => color(d.key));
+        // Hover Tooltip
+        this._createTooltip(sumstat);
 
-        item.append('h3')
-            .attr('class', 'legend-item--header')
-            .text(d => d.key);
-
+        // Show Graph
         $("#aq-stat-graph").fadeIn();
         this.isShown = true;
     }
 
+    /**
+     * Hides graph.
+     */
     hide() {
 
         this.isShown = false;
@@ -127,6 +124,11 @@ class Graph {
         $("#aq-stat-graph").hide();
     }
 
+    /**
+     * Parses data and returns line data.
+     * @param {*} data 
+     * @param {*} dates 
+     */
     _parseData(data, dates) {
 
         const parseDate = d3.time.format("%m.%Y").parse;
@@ -147,9 +149,154 @@ class Graph {
         return lineData;
     }
 
+    /**
+     * Creates grid behinds lines.
+     */
     _makeGridAxis() {
         return d3.svg.axis()
             .scale(this.y)
             .orient("left")
+    }
+
+    /**
+     * Updates text inside tooltip.
+     * @param {*} mouse 
+     * @param {*} data 
+     */
+    _updateTooltip(mouse, data) {
+
+        var g = d3.select(".mouse-per-line");
+        var mousePos = d3.transform(g.attr("transform")).translate;
+        const scope = this;
+        
+        this.tooltip
+            .style('display', 'block')
+            .style('left', (mousePos[0] + 50 >= scope.width ? mousePos[0] - 65 : mousePos[0] + 50) + 'px')
+            .style('top', (scope.height + mousePos[1] <= scope.height ? 270 : scope.height + mousePos[1]) + 'px')
+            .style('font-size', 12)
+            .style('text-align', 'left')
+            .style("background", "#ffffff")
+            .style("border", "1px solid #3d3e40")
+            .style("padding", "8px")
+            .append('div')
+            .style('font-size', 10)
+            .html(() => {
+
+                let string = "";
+                data.forEach(d => {
+
+                    var xDate = scope.x.invert(mouse[0])
+                    var bisect = d3.bisector(function (d) { return d.x }).left
+                    var idx = bisect(d.values, xDate)
+                    string += d.key + ": " + Math.round((d.values[idx - 1].y + Number.EPSILON) * 100) / 100 + " µg/m3<br>"; 
+                });
+                return string;                
+            });
+    }
+
+    /**
+     * Creates and shows tooltip on graph.
+     * @param {*} data 
+     */
+    _createTooltip(data) {
+
+        const scope = this;
+        const mouseG = this.svg.append("g")
+            .attr("class", "mouse-over-effects");
+
+        mouseG.append("path")
+            .attr("class", "mouse-line")
+            .style("stroke", "#A9A9A9")
+            .style("stroke-width", 2)
+            .style("opacity", "0");
+
+        const mousePerLine = mouseG.selectAll('.mouse-per-line')
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("class", "mouse-per-line");
+
+        mousePerLine.append("circle")
+            .attr("r", 4)
+            .style("stroke", function (d) {
+                return scope.color(d.key)
+            })
+            .style("fill", "none")
+            .style("stroke-width", 2)
+            .style("opacity", "0");
+
+        mouseG.append('svg:rect')
+            .attr('width', this.width) 
+            .attr('height', this.height)
+            .attr('fill', 'none')
+            .attr('pointer-events', 'all')
+            .on('mouseout', function () {
+                d3.select(".mouse-line").style("opacity", "0");
+                d3.selectAll(".mouse-per-line circle").style("opacity", "0");
+                d3.selectAll(".mouse-per-line text").style("opacity", "0");
+                d3.selectAll("#tooltip").style('display', 'none').empty();
+
+            })
+            .on('mouseover', function () {
+                d3.select(".mouse-line").style("opacity", "1");
+                d3.selectAll(".mouse-per-line circle").style("opacity", "1");
+                d3.selectAll("#tooltip").style('display', 'block').empty();
+            })
+            .on('mousemove', function () {
+                
+                const mouse = d3.mouse(this);
+                d3.selectAll(".mouse-per-line")
+                    .attr("transform", (d, i) => {
+
+                        const xDate = scope.x.invert(mouse[0]);
+                        const bisect = d3.bisector(d => { return d.x; }).left;
+                        const id = bisect(d.values, xDate);
+
+                        d3.select(".mouse-line")
+                            .attr("d", function () {
+
+                                let tmpData = "M" + scope.x(d.values[id].x) + "," + (scope.height);
+                                tmpData += " " + scope.x(d.values[id].x) + "," + 0;
+                                return tmpData;
+                            });
+                        return "translate(" + scope.x(d.values[id].x) + "," + scope.y(d.values[id].y) + ")";
+                    });
+
+                d3.selectAll("#tooltip").html('');
+                scope._updateTooltip(mouse, data)
+
+            })
+    }
+
+    /**
+     * Creates and shows grap legend.
+     * @param {*} data 
+     */
+    _createLegend(data) {
+
+        const svgLegend = this.svg.append('g')
+            .attr('class', 'gLegend')
+            .attr("transform", "translate(" + 0 + "," + (this.height + this.margin.bottom - 15) + ")");
+
+        const legend = svgLegend.selectAll('.legend')
+            .data(data)
+            .enter().append('g')
+            .attr("class", "legend")
+            .attr("transform", function (d, i) {return "translate(" + i * 64 + ",0)"});
+
+        legend.append("circle")
+            .attr("class", "legend-node")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", 6)
+            .style("fill", d => this.color(d.key));
+
+        legend.append("text")
+            .attr("class", "legend-text")
+            .attr("x", 12)
+            .attr("y", 3)
+            .style("fill", "#A9A9A9")
+            .style("font-size", 12)
+            .text(d => d.key);
     }
 }

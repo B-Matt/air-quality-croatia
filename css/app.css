@@ -176,19 +176,19 @@ footer {
 
 #aq-stat-graph-wrapper {
   font: 10px sans-serif;
+  margin-right: 35px;
 }
  
 #aq-stat-graph .axis path,
 #aq-stat-graph .axis line {
 	fill: none;
-	stroke: grey;
+  stroke: grey;
 	stroke-width: 1;
 	shape-rendering: crispEdges;
 }
 
 #aq-stat-graph .grid .tick {
   stroke: lightgrey;
-  opacity: 0.3;
 }
 
 #aq-stat-graph-legend {

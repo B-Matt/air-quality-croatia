@@ -7,7 +7,7 @@ class Stations {
 
         this.dates = null;
         this.stations = null;
-        this.graph = new Graph(400, 200, {top: 30, right: 0, bottom: 0, left: 30});
+        this.graph = new Graph(400, 250, {top: 30, right: 0, bottom: 60, left: 30});
 
         this.projectCircles = d3.geo.mercator()
             .center([16.52, 44.415])
@@ -69,7 +69,7 @@ class Stations {
             .style("background", "#ffffff")
             .style("border", "1px solid #3d3e40")
             .style("padding", "8px")
-            .text("a simple tooltip");
+            .text("");
 
         const scope = this;
         const station = this.svg.selectAll("circle")

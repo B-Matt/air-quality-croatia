@@ -3,6 +3,7 @@ let mapScale = 1;
 
 const map = new Map(mapSizes[0], mapSizes[1]);
 const stations = new Stations(mapSizes[0], mapSizes[1]);
+let pollutant = "pm10";
 
 map.loadMap(() => {
     stations.loadStations(map.getContainer())
@@ -32,6 +33,11 @@ $(document).ready(() => {
 
         $("#pause-button").hide();
         $("#animate-button").show();
+    });
+
+    $('#aq-pollutant-type').on('change', () => {
+
+        pollutant = this.value;
     });
 
     $(document).mouseup((e) => {
